@@ -2,14 +2,14 @@ extends Bullet
 class_name ShotgunBullet
 
 func onLaunch(vec: Vector2, pos: Vector2, rot: float, clr: int): 
-	var bulletInst1 = Globals.basicBulletTemplate.instance()
+	#var bulletInst1 = Globals.basicBulletTemplate.instance()
 	var bulletInst2 = Globals.basicBulletTemplate.instance()
-	var bulletInst3 = Globals.basicBulletTemplate.instance()
+	#var bulletInst3 = Globals.basicBulletTemplate.instance()
 	var bulletInst4 = Globals.basicBulletTemplate.instance()
 	
-	Globals.mainScene.get_node("Entities").add_child(bulletInst1)
+	#Globals.mainScene.get_node("Entities").add_child(bulletInst1)
 	Globals.mainScene.get_node("Entities").add_child(bulletInst2)
-	Globals.mainScene.get_node("Entities").add_child(bulletInst3)
+	#Globals.mainScene.get_node("Entities").add_child(bulletInst3)
 	Globals.mainScene.get_node("Entities").add_child(bulletInst4)
 	
 	#bulletInst1.launch(rotateVector(vec, deg2rad(5)), pos, rot + deg2rad(5), clr)

@@ -30,7 +30,7 @@ func _input(_event):
 			Globals.colors.yellow: pass
 			Globals.colors.green: pass
 			Globals.colors.blue: bullet = Globals.shotgunBulletTemplate.instance()
-			Globals.colors.violet: pass
+			Globals.colors.violet: bullet = Globals.gravityBulletTemplate.instance()
 			_: bullet = Globals.basicBulletTemplate.instance() # change later
 		
 		get_parent().add_child(bullet)

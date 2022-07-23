@@ -9,6 +9,10 @@ var speed = 10 * 32
 
 func _physics_process(delta):
 	onPhysicsProcess(delta)
+	handleMovement(delta)
+
+
+func handleMovement(delta):
 	self.position += velocity * delta
 
 
