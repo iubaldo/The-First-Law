@@ -27,4 +27,5 @@ texture = ExtResource( 2 )
 position = Vector2( 523, 293 )
 scale = Vector2( 0.533333, 0.555556 )
 
+[connection signal="area_exited" from="Area Bounds" to="." method="_on_Area_Bounds_area_exited"]
 [connection signal="body_exited" from="Area Bounds" to="." method="_on_Area_Bounds_body_exited"]

@@ -3,10 +3,6 @@ class_name Player
 # handles player controls
 
 
-#preloads
-onready var bulletTemplate = preload("res://Scenes/Bullet.tscn")
-
-
 # movement variables
 var velocity: Vector2
 const ACCELERATION = 20 * 32
@@ -14,16 +10,54 @@ const MAX_SPEED = 16 * 32
 const FRICTION = 0.95
 const ROTATION_SPEED = 5
 
+# shooting variables
+var shootVector: Vector2 = Vector2.UP
+var bulletColor: int = Globals.colors.white
+
 
 func _ready():
 	add_to_group("player")
 
 
 func _input(_event):
-	if Input.is_action_just_pressed("shoot"):
-		var bullet = bulletTemplate.instance()
+	if Input.is_action_pressed("shoot") && $ShootCD.is_stopped():
+		var bullet: Bullet
+		
+		match bulletColor:
+			Globals.colors.white: bullet = Globals.basicBulletTemplate.instance() # change later
+			Globals.colors.red: pass
+			Globals.colors.orange: pass
+			Globals.colors.yellow: pass
+			Globals.colors.green: pass
+			Globals.colors.blue: bullet = Globals.shotgunBulletTemplate.instance()
+			Globals.colors.violet: pass
+			_: bullet = Globals.basicBulletTemplate.instance() # change later
+		
 		get_parent().add_child(bullet)
-		bullet.position = self.position
+		bullet.launch(shootVector, $"Bullet Spawn".global_position, self.rotation, bulletColor)
+		$ShootCD.start()
+	
+	if Input.is_action_just_pressed("bullet0"):
+		bulletColor = Globals.colors.white
+		print("switched to white bullet")
+	elif Input.is_action_just_pressed("bullet1"):
+		bulletColor = Globals.colors.red
+		print("switched to red bullet")
+	elif Input.is_action_just_pressed("bullet2"):
+		bulletColor = Globals.colors.orange
+		print("switched to orange bullet")
+	elif Input.is_action_just_pressed("bullet3"):
+		bulletColor = Globals.colors.yellow
+		print("switched to yellow bullet")
+	elif Input.is_action_just_pressed("bullet4"):
+		bulletColor = Globals.colors.green
+		print("switched to green bullet")
+	elif Input.is_action_just_pressed("bullet5"):
+		bulletColor = Globals.colors.blue
+		print("switched to blue bullet")
+	elif Input.is_action_just_pressed("bullet6"):
+		bulletColor = Globals.colors.violet
+		print("switched to violet bullet")
 
 
 func _physics_process(delta):
@@ -34,6 +68,8 @@ func _physics_process(delta):
 		rotation += ROTATION_SPEED * delta
 	elif Input.is_action_pressed("rotate_ccw"):
 		rotation -= ROTATION_SPEED * delta
+		
+	shootVector = Vector2(sin(rotation), -cos(rotation))
 
 
 func handleMoveInput() -> Vector2:

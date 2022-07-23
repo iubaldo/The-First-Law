@@ -28,7 +28,7 @@ func endGame():
 	pass
 
 
-# teleports entities when they reach the end of the screen
+# teleports player when they reach the end of the screen
 func _on_Area_Bounds_body_exited(body):
 	if body.position.x <= 10:
 		body.position = Vector2(bounds.size.x, body.position.y)
@@ -38,3 +38,14 @@ func _on_Area_Bounds_body_exited(body):
 		body.position = Vector2(body.position.x, bounds.size.y)
 	elif body.position.y >= bounds.size.y:
 		body.position = Vector2(body.position.x, 0)
+
+
+func _on_Area_Bounds_area_exited(area):
+	if area.position.x <= 10:
+		area.position = Vector2(bounds.size.x, area.position.y)
+	elif area.position.x >= bounds.size.x:
+		area.position = Vector2(0, area.position.y)
+	elif area.position.y <= 10:
+		area.position = Vector2(area.position.x, bounds.size.y)
+	elif area.position.y >= bounds.size.y:
+		area.position = Vector2(area.position.x, 0)

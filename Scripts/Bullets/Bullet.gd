@@ -1,12 +1,10 @@
-extends KinematicBody2D
+extends Area2D
 class_name Bullet
 # abstract class that defines bullet behavior
 
-enum colors { red, orange, yellow, green, blue, violet }
-
-var parent
 var color: int = 0
-var velocity = Vector2.ZERO
+var velocity: Vector2
+var speed = 10 * 32
 
 
 func _physics_process(delta):
@@ -19,17 +17,18 @@ func onPhysicsProcess(delta):
 	pass
 
 
-func launch(vel: Vector2, pos: Vector2, rot: float, origin):
-	velocity = vel
+func launch(vec: Vector2, pos: Vector2, rot: float, clr: int):
+	velocity = vec * speed
 	position = pos
 	rotation = rot
-	parent = origin
+	color = clr
 
-	onLaunch(vel, pos, rot, origin)
+	print("launched with vel: " + var2str(velocity))
+	onLaunch(vec, pos, rot, clr)
 
 
 # abstract
-func onLaunch(vel: Vector2, pos: Vector2, rot: float, origin): 
+func onLaunch(vec: Vector2, pos: Vector2, rot: float, clr: int): 
 	pass
 
 

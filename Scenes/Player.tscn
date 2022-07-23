@@ -23,3 +23,7 @@ polygon = PoolVector2Array( -7, 2, -11, 11, 0, 13, 11, 11, 7, 2 )
 
 [node name="Bullet Spawn" type="Node2D" parent="."]
 position = Vector2( 0, -45 )
+
+[node name="ShootCD" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true

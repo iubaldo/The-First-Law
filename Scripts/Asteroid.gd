@@ -2,21 +2,11 @@ extends Area2D
 class_name Asteroid
 # defines asteroid behavior
 
-
-onready var asteroid01 = preload("res://Scenes/Asteroids/Asteroid 0-1.tscn")
-onready var asteroid02 = preload("res://Scenes/Asteroids/Asteroid 0-2.tscn")
-onready var asteroid03 = preload("res://Scenes/Asteroids/Asteroid 0-3.tscn")
-onready var asteroid11 = preload("res://Scenes/Asteroids/Asteroid 1-1.tscn")
-onready var asteroid12 = preload("res://Scenes/Asteroids/Asteroid 1-2.tscn")
-onready var asteroid13 = preload("res://Scenes/Asteroids/Asteroid 1-3.tscn")
-onready var asteroid21 = preload("res://Scenes/Asteroids/Asteroid 2-1.tscn")
-onready var asteroid22 = preload("res://Scenes/Asteroids/Asteroid 2-2.tscn")
-onready var asteroid23 = preload("res://Scenes/Asteroids/Asteroid 2-3.tscn")
-
+var color: int = 0
 var tier: int = 0
-var t0 = [asteroid01, asteroid02, asteroid03]
-var t1 = [asteroid11, asteroid12, asteroid13]
-var t2 = [asteroid21, asteroid22, asteroid23]
+var t0 = [Globals.asteroid01, Globals.asteroid02, Globals.asteroid03]
+var t1 = [Globals.asteroid11, Globals.asteroid12, Globals.asteroid13]
+var t2 = [Globals.asteroid21, Globals.asteroid22, Globals.asteroid23]
 
 var velocity = Vector2.ZERO
 var rotVelocity = 0
@@ -24,7 +14,25 @@ var rotVelocity = 0
 
 func _ready():
 	add_to_group("asteroid")
+
+
+func initialize():
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
 	
+	var roll = rng.randi() % 20
+	
+	if roll <= 10:
+		color = Globals.colors.white
+	
+	match roll:
+		11: color = Globals.colors.red
+		12: color = Globals.colors.orange
+		13: color = Globals.colors.yellow
+		14: color = Globals.colors.green
+		15: color = Globals.colors.blue
+		16: color = Globals.colors.violet
+
 
 func _physics_process(delta):
 	self.position += velocity * delta
@@ -54,6 +62,9 @@ func destroy():
 	
 	get_parent().add_child(child1)
 	get_parent().add_child(child2)
+	
+	child1.color = self.color
+	child2.color = self.color
 	
 	child1.position = Vector2(self.position.x + rng.randi_range(-10, 10), self.position.y + rng.randi_range(-10, 10))
 	child1.velocity = Vector2(rng.randi_range(-10, 10), rng.randi_range(-10, 10))
