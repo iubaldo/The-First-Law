@@ -4,7 +4,7 @@ class_name Bullet
 
 var color: int = 0
 var velocity: Vector2
-var speed = 10 * 32
+var speed = 15 * 32
 
 
 func _physics_process(delta):

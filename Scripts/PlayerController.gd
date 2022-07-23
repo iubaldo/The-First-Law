@@ -16,6 +16,7 @@ var bulletColor: int = Globals.colors.white
 
 
 func _ready():
+	Globals.set("player", self)
 	add_to_group("player")
 
 
@@ -24,10 +25,10 @@ func _input(_event):
 		var bullet: Bullet
 		
 		match bulletColor:
-			Globals.colors.white: bullet = Globals.basicBulletTemplate.instance() # change later
+			Globals.colors.white: bullet = Globals.basicBulletTemplate.instance() # change later to modify current bullet to be white
 			Globals.colors.red: pass
 			Globals.colors.orange: pass
-			Globals.colors.yellow: pass
+			Globals.colors.yellow: bullet = Globals.burstBulletTemplate.instance()
 			Globals.colors.green: pass
 			Globals.colors.blue: bullet = Globals.shotgunBulletTemplate.instance()
 			Globals.colors.violet: bullet = Globals.gravityBulletTemplate.instance()

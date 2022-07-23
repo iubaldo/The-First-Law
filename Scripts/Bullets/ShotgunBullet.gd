@@ -1,5 +1,6 @@
 extends Bullet
 class_name ShotgunBullet
+# fires multiple bullets in a cone
 
 func onLaunch(vec: Vector2, pos: Vector2, rot: float, clr: int): 
 	#var bulletInst1 = Globals.basicBulletTemplate.instance()

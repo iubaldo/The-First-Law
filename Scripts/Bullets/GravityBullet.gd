@@ -1,7 +1,8 @@
 extends Bullet
 class_name GravityBullet
+# fires two bullets at opposite angles that attract towards one another
 
-const MAX_SPEED = 10 * 32
+const MAX_SPEED = 15 * 32
 var acceleration = Vector2.ZERO
 var target = null
 var original = true
