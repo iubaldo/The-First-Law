@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/Asteroids/asteroid1-2.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Asteroid.gd" type="Script" id=2]
+
+[node name="Asteroid" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -96, -66, -110, -30, -98, 35, -70, 90, -10, 106, 1, 51, 85, 2, 80, -18, 96, -68, 52, -103, -6, -111, -54, -96 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )

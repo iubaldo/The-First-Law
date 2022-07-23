@@ -1,8 +1,11 @@
 extends KinematicBody2D
 class_name Player
+# handles player controls
 
 
-# onready var bullet
+#preloads
+onready var bulletTemplate = preload("res://Scenes/Bullet.tscn")
+
 
 # movement variables
 var velocity: Vector2
@@ -10,6 +13,13 @@ const ACCELERATION = 20 * 32
 const MAX_SPEED = 16 * 32
 const FRICTION = 0.95
 const ROTATION_SPEED = 5
+
+
+func _input(event):
+	if Input.is_action_just_pressed("shoot"):
+		var bullet = bulletTemplate.instance()
+		get_parent().add_child(bullet)
+		bullet.position = self.position
 
 
 func _physics_process(delta):
