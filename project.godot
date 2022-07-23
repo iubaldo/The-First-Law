@@ -39,6 +39,10 @@ run/main_scene="res://Scenes/Main Scene.tscn"
 
 GameManager="*res://Scripts/GameManager.gd"
 
+[debug]
+
+gdscript/warnings/unused_argument=false
+
 [input]
 
 ui_accept={

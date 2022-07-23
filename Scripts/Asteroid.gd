@@ -18,16 +18,48 @@ var t0 = [asteroid01, asteroid02, asteroid03]
 var t1 = [asteroid11, asteroid12, asteroid13]
 var t2 = [asteroid21, asteroid22, asteroid23]
 
+var velocity = Vector2.ZERO
+var rotVelocity = 0
+
+
 func _ready():
-	add_to_group("asteroid")	
-	pass
+	add_to_group("asteroid")
+	
+
+func _physics_process(delta):
+	self.position += velocity * delta
+	self.rotation += rotVelocity * delta
 
 
+# split into 2 asteroids a tier below, or destroy self if tier 0
 func destroy():
-	if tier == 2:
-		randomize()
-		var child1 = t1[randi() % t1.size()].instance()
-		var child2 = t1[randi() % t1.size()].instance()
-		
-		get_parent().add_child(child1)
-		get_parent().add_child(child2)
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	
+	var child1: Asteroid
+	var child2: Asteroid
+	
+	if tier == 0:
+		queue_free()
+	elif tier == 1:
+		child1 = t0[rng.randi() % t1.size()].instance()
+		child1.tier = 0
+		child2 = t0[rng.randi() % t1.size()].instance()
+		child2.tier = 0
+	elif tier == 2:
+		child1 = t1[rng.randi() % t1.size()].instance()
+		child1.tier = 1
+		child2 = t1[rng.randi() % t1.size()].instance()
+		child2.tier = 1
+	
+	get_parent().add_child(child1)
+	get_parent().add_child(child2)
+	
+	child1.position = Vector2(self.position.x + rng.randi_range(-10, 10), self.position.y + rng.randi_range(-10, 10))
+	child1.velocity = Vector2(rng.randi_range(-10, 10), rng.randi_range(-10, 10))
+	child1.rotVelocity = rng.randi_range(-5, 5)
+	child2.position = Vector2(self.position.x + rng.randi_range(-10, 10), self.position.y + rng.randi_range(-10, 10))	
+	child2.velocity = Vector2(rng.randi_range(-10, 10), rng.randi_range(-10, 10))
+	child2.rotVelocity = rng.randi_range(-5, 5)
+
+	queue_free()

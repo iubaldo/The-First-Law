@@ -15,7 +15,11 @@ const FRICTION = 0.95
 const ROTATION_SPEED = 5
 
 
-func _input(event):
+func _ready():
+	add_to_group("player")
+
+
+func _input(_event):
 	if Input.is_action_just_pressed("shoot"):
 		var bullet = bulletTemplate.instance()
 		get_parent().add_child(bullet)
@@ -55,4 +59,4 @@ func applyMovement(moveVector, delta):
 	if Input.is_action_pressed("brake"):
 		velocity *= FRICTION
 		
-	move_and_slide(transform.basis_xform(velocity), Vector2.UP)
+	var _temp = move_and_slide(transform.basis_xform(velocity), Vector2.UP) # given a variable so the editor stops yelling

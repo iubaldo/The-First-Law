@@ -5,7 +5,7 @@ var bounds: Rect2
 
 # player stuff
 var score: int
-var hp: int
+var playerHP: int = 5 # maybe change based on difficulty later (5/3/1)?
 
 
 # controller variables
@@ -15,6 +15,17 @@ var deadzone0 = 0.3
 func _ready():
 	var screenSize = Vector2(get_viewport().get_visible_rect().size.x - 10, get_viewport().get_visible_rect().size.y - 10)
 	bounds = Rect2(Vector2(10, 10), screenSize)
+
+
+func damagePlayer():
+	playerHP -= 1
+	if playerHP <= 0:
+		endGame()
+
+
+func endGame():
+	print("you lose!")
+	pass
 
 
 # teleports entities when they reach the end of the screen
