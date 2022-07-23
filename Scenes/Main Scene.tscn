@@ -27,5 +27,15 @@ texture = ExtResource( 2 )
 position = Vector2( 523, 293 )
 scale = Vector2( 0.533333, 0.555556 )
 
+[node name="Invincibility Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="Asteroid Spawn Timer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
 [connection signal="area_exited" from="Area Bounds" to="." method="_on_Area_Bounds_area_exited"]
 [connection signal="body_exited" from="Area Bounds" to="." method="_on_Area_Bounds_body_exited"]
+[connection signal="timeout" from="Invincibility Timer" to="." method="_on_Invincibility_Timer_timeout"]
+[connection signal="timeout" from="Asteroid Spawn Timer" to="." method="_on_Asteroid_Spawn_Timer_timeout"]

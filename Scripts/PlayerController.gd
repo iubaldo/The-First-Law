@@ -75,7 +75,7 @@ func _physics_process(delta):
 
 func handleMoveInput() -> Vector2:
 	var moveVector = Vector2.ZERO
-	if !GameManager.usingController:
+	if !Globals.mainScene.usingController:
 		var inputVector = Vector2(Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left") , \
 			 Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
 		moveVector = inputVector.normalized()

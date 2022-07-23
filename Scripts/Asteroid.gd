@@ -4,9 +4,6 @@ class_name Asteroid
 
 var color: int = 0
 var tier: int = 0
-var t0 = [Globals.asteroid01, Globals.asteroid02, Globals.asteroid03]
-var t1 = [Globals.asteroid11, Globals.asteroid12, Globals.asteroid13]
-var t2 = [Globals.asteroid21, Globals.asteroid22, Globals.asteroid23]
 
 var velocity = Vector2.ZERO
 var rotVelocity = 0
@@ -39,6 +36,13 @@ func _physics_process(delta):
 	self.rotation += rotVelocity * delta
 
 
+func launch(var vel: Vector2, var rotVel: int, var pos: Vector2, var rot: float):
+	velocity = vel
+	rotVelocity = rotVel
+	position = pos
+	rotation = rot
+
+
 # split into 2 asteroids a tier below, or destroy self if tier 0
 func destroy():
 	var rng = RandomNumberGenerator.new()
@@ -50,14 +54,14 @@ func destroy():
 	if tier == 0:
 		queue_free()
 	elif tier == 1:
-		child1 = t0[rng.randi() % t1.size()].instance()
+		child1 = Globals.t0[rng.randi() % Globals.t0.size()].instance()
 		child1.tier = 0
-		child2 = t0[rng.randi() % t1.size()].instance()
+		child2 = Globals.t0[rng.randi() % Globals.t0.size()].instance()
 		child2.tier = 0
 	elif tier == 2:
-		child1 = t1[rng.randi() % t1.size()].instance()
+		child1 = Globals.t1[rng.randi() % Globals.t1.size()].instance()
 		child1.tier = 1
-		child2 = t1[rng.randi() % t1.size()].instance()
+		child2 = Globals.t1[rng.randi() % Globals.t1.size()].instance()
 		child2.tier = 1
 	
 	get_parent().add_child(child1)

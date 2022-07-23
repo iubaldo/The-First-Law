@@ -38,7 +38,7 @@ func onLaunch(vec: Vector2, pos: Vector2, rot: float, clr: int):
 # hit the player
 func _on_Bullet_body_entered(body):
 	if body.is_in_group("player"):
-		GameManager.damagePlayer()
+		Globals.mainScene.damagePlayer()
 
 
 #hit an asteroid or another bullet

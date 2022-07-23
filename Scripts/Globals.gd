@@ -19,3 +19,12 @@ onready var burstBulletTemplate = preload("res://Scenes/Bullets/BurstBullet.tscn
 
 var mainScene
 var player
+
+var t0
+var t1
+var t2
+
+func _ready():
+	t0 = [asteroid01, asteroid02, asteroid03]
+	t1 = [asteroid11, asteroid12, asteroid13]
+	t2 = [asteroid21, asteroid22, asteroid23]
