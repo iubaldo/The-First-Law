@@ -13,9 +13,11 @@ var usingController = false
 var deadzone0 = 0.3
 
 func _ready():
+	Globals.set("mainScene", self)
+	
 	var screenSize = Vector2(get_viewport().get_visible_rect().size.x - 10, get_viewport().get_visible_rect().size.y - 10)
 	bounds = Rect2(Vector2(10, 10), screenSize)
-
+	
 
 func damagePlayer():
 	playerHP -= 1

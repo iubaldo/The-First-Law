@@ -14,3 +14,5 @@ onready var asteroid23 = preload("res://Scenes/Asteroids/Asteroid 2-3.tscn")
 
 onready var basicBulletTemplate = preload("res://Scenes/Bullets/BasicBullet.tscn")
 onready var shotgunBulletTemplate = preload("res://Scenes/Bullets/ShotgunBullet.tscn")
+
+var mainScene

@@ -23,7 +23,6 @@ func launch(vec: Vector2, pos: Vector2, rot: float, clr: int):
 	rotation = rot
 	color = clr
 
-	print("launched with vel: " + var2str(velocity))
 	onLaunch(vec, pos, rot, clr)
 
 
