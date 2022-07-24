@@ -103,7 +103,7 @@ func _on_Asteroid_Spawn_Timer_timeout():
 	$Entities.add_child(asteroidInst)
 	asteroidInst.tier = tier
 	asteroidInst.launch(targetVel, rotVel, spawnPos, angle)
-	print("launched asteroid from " + var2str(spawnPos) + ", targeting " + var2str(targetPos))
+	# print("launched asteroid from " + var2str(spawnPos) + ", targeting " + var2str(targetPos))
 	
 	spawnTimer.wait_time = rng.randi_range(6, 10)
 	spawnTimer.start()

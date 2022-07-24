@@ -39,9 +39,11 @@ func onLaunch(vec: Vector2, pos: Vector2, rot: float, clr: int):
 func _on_Bullet_body_entered(body):
 	if body.is_in_group("player"):
 		Globals.mainScene.damagePlayer()
+		queue_free()
 
 
 #hit an asteroid or another bullet
 func _on_Bullet_area_entered(area):
 	if area.is_in_group("asteroid"):
 		area.destroy()
+		queue_free()
