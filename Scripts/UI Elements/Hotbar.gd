@@ -32,11 +32,11 @@ func updateHotbar(clr: int):
 		Globals.colors.red:
 			currentHotbar = hotbar_red
 			currentIcon = icon_blade
-		Globals.colors.yellow:
-			currentHotbar = hotbar_yellow
-			currentIcon = icon_shield
 		Globals.colors.orange:
 			currentHotbar = hotbar_orange
+			currentIcon = icon_shield
+		Globals.colors.yellow:
+			currentHotbar = hotbar_yellow
 			currentIcon = icon_missile
 		Globals.colors.green:
 			currentHotbar = hotbar_green

@@ -19,7 +19,6 @@ const ROTATION_SPEED = 5
 
 # shooting variables
 var shootVector: Vector2 = Vector2.UP
-var bulletType: int = Globals.colors.white
 var bulletColor: int = Globals.colors.white
 
 var whiteCD = 0.5
@@ -41,68 +40,60 @@ func _input(_event):
 	if Input.is_action_pressed("shoot") && $ShootCD.is_stopped():
 		var bullet: Bullet
 		
-		match bulletType:
+		match bulletColor:
 			Globals.colors.white: 
 				bullet = Globals.basicBulletTemplate.instance() # change later to modify current bullet to be white
-				bulletColor = Globals.colors.white
 				$ShootCD.wait_time = whiteCD
 			Globals.colors.red: 
 				bullet = $Blade
-				bulletColor = Globals.colors.red
 				$ShootCD.wait_time = redCD
 			Globals.colors.orange:
 				bullet = $Shield
-				bulletColor = Globals.colors.orange
 				$ShootCD.wait_time = orangeCD
 			Globals.colors.yellow: 
 				bullet = Globals.missileBulletTemplate.instance()
-				bulletColor = Globals.colors.yellow
 				$ShootCD.wait_time = yellowCD
 			Globals.colors.green:
 				bullet = Globals.burstBulletTemplate.instance()
-				bulletColor = Globals.colors.green
 				$ShootCD.wait_time = greenCD
 			Globals.colors.blue: 
 				bullet = Globals.shotgunBulletTemplate.instance()
-				bulletColor = Globals.colors.blue
 				$ShootCD.wait_time = blueCD
 			Globals.colors.violet: 
 				bullet = Globals.gravityBulletTemplate.instance()
-				bulletColor = Globals.colors.violet
 				$ShootCD.wait_time = violetCD
 			_: 
 				bullet = Globals.basicBulletTemplate.instance()
-				bulletColor = Globals.colors.white
 				$ShootCD.wait_time = whiteCD
 		
 		if bulletColor != Globals.colors.red && bulletColor != Globals.colors.orange:
 			get_parent().add_child(bullet)
 		
 		bullet.applyColor(bulletColor)
-		bullet.launch(shootVector, $"Bullet Spawn".global_position, self.rotation, bulletType)
+		bullet.launch(shootVector, $"Bullet Spawn".global_position, self.rotation, bulletColor)
 		$ShootCD.start()
 	
 	if Input.is_action_just_pressed("bullet0"):
-		bulletType = Globals.colors.white
-		emit_signal("bulletChanged", bulletType)
+		bulletColor = Globals.colors.white
+		emit_signal("bulletChanged", bulletColor)
 	elif Input.is_action_just_pressed("bullet1"):
-		bulletType = Globals.colors.red
-		emit_signal("bulletChanged", bulletType)
+		bulletColor = Globals.colors.red
+		emit_signal("bulletChanged", bulletColor)
 	elif Input.is_action_just_pressed("bullet2"):
-		bulletType = Globals.colors.orange
-		emit_signal("bulletChanged", bulletType)
+		bulletColor = Globals.colors.orange
+		emit_signal("bulletChanged", bulletColor)
 	elif Input.is_action_just_pressed("bullet3"):
-		bulletType = Globals.colors.yellow
-		emit_signal("bulletChanged", bulletType)
+		bulletColor = Globals.colors.yellow
+		emit_signal("bulletChanged", bulletColor)
 	elif Input.is_action_just_pressed("bullet4"):
-		bulletType = Globals.colors.green
-		emit_signal("bulletChanged", bulletType)
+		bulletColor = Globals.colors.green
+		emit_signal("bulletChanged", bulletColor)
 	elif Input.is_action_just_pressed("bullet5"):
-		bulletType = Globals.colors.blue
-		emit_signal("bulletChanged", bulletType)
+		bulletColor = Globals.colors.blue
+		emit_signal("bulletChanged", bulletColor)
 	elif Input.is_action_just_pressed("bullet6"):
-		bulletType = Globals.colors.violet
-		emit_signal("bulletChanged", bulletType)
+		bulletColor = Globals.colors.violet
+		emit_signal("bulletChanged", bulletColor)
 
 
 func _physics_process(delta):

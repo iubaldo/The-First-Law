@@ -80,13 +80,14 @@ script = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, -119.3 )
-polygon = PoolVector2Array( -18, 22, 0, -91, 18, 22, 0, 58 )
+polygon = PoolVector2Array( -18.9996, 9.29993, 0.000988257, -153.7, 19.0004, 8.30007, 0, 58 )
 disabled = true
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.690196, 0.176471, 0.137255, 0 )
-position = Vector2( 0, -119.3 )
+position = Vector2( 0, -30 )
 texture = ExtResource( 1 )
+offset = Vector2( -0.153164, -129.357 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/BladeAnimation = SubResource( 1 )
