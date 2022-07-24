@@ -4,6 +4,9 @@ class_name GameManager
 
 onready var spawnTimer = $"Asteroid Spawn Timer"
 
+signal healthChanged(newHP)
+
+# screen stuff
 var bounds: Rect2
 const MIN_SPAWN_RADIUS = 650
 const MAX_SPAWN_RADIUS = 750
@@ -19,6 +22,7 @@ const deadzone0 = 0.3
 
 func _ready():
 	Globals.set("mainScene", self)
+	connect("healthChanged", Globals.hpbar, "updateHealthBar")
 	
 	var screenSize = Vector2(get_viewport().get_visible_rect().size.x - 10, get_viewport().get_visible_rect().size.y - 10)
 	bounds = Rect2(Vector2(10, 10), screenSize)
@@ -30,7 +34,11 @@ func _input(_event):
 
 
 func damagePlayer():
+	if invincible:
+		return
+	
 	playerHP -= 1
+	emit_signal("healthChanged", playerHP)
 	invincible = true
 	$"Invincibility Timer".start()
 	

@@ -20,6 +20,7 @@ onready var missileBulletTemplate = preload("res://Scenes/Bullets/MissileBullet.
 
 var mainScene
 var player
+var hpbar
 
 var t0
 var t1
