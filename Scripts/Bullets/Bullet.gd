@@ -7,6 +7,15 @@ var velocity: Vector2
 var speed = 15 * 32
 
 
+func _ready():
+	add_to_group("bullet")
+
+
+# abstract
+func onReady():
+	pass
+
+
 func applyColor(clr: int):
 	color = clr
 	match color:

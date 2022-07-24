@@ -2,7 +2,7 @@ extends Bullet
 class_name MissileBullet
 # fires a a slow-moving bullet that explodes on impact
 
-func _ready():
+func onReady():
 	speed = 10 * 32
 
 

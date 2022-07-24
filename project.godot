@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Asteroid.gd"
 }, {
+"base": "Bullet",
+"class": "Blade",
+"language": "GDScript",
+"path": "res://Scripts/Bullets/Blade.gd"
+}, {
 "base": "Area2D",
 "class": "Bullet",
 "language": "GDScript",
@@ -45,18 +50,25 @@ _global_script_classes=[ {
 "path": "res://Scripts/PlayerController.gd"
 }, {
 "base": "Bullet",
+"class": "Shield",
+"language": "GDScript",
+"path": "res://Scripts/Bullets/Shield.gd"
+}, {
+"base": "Bullet",
 "class": "ShotgunBullet",
 "language": "GDScript",
 "path": "res://Scripts/Bullets/ShotgunBullet.gd"
 } ]
 _global_script_class_icons={
 "Asteroid": "",
+"Blade": "",
 "Bullet": "",
 "BurstBullet": "",
 "GameManager": "",
 "GravityBullet": "",
 "MissileBullet": "",
 "Player": "",
+"Shield": "",
 "ShotgunBullet": ""
 }
 
@@ -191,6 +203,7 @@ debug_start={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Asteroids"
 2d_physics/layer_3="Bullet"
+2d_physics/layer_4="Solid"
 
 [physics]
 

@@ -9,6 +9,7 @@ onready var flightTrail2 = $"Flight Trail 2"
 # movement variables
 var velocity: Vector2
 const ACCELERATION = 20 * 32
+const DASH_SPEED = 24 * 32
 const MAX_SPEED = 16 * 32
 const FRICTION = 0.95
 const ROTATION_SPEED = 5
@@ -17,6 +18,14 @@ const ROTATION_SPEED = 5
 var shootVector: Vector2 = Vector2.UP
 var bulletType: int = Globals.colors.white
 var bulletColor: int = Globals.colors.white
+
+var whiteCD = 0.5
+var redCD = 0.3
+var yellowCD = 1
+var orangeCD = 1.5
+var greenCD = 1
+var blueCD = 0.75
+var violetCD = 1
 
 
 func _ready():
@@ -32,27 +41,39 @@ func _input(_event):
 			Globals.colors.white: 
 				bullet = Globals.basicBulletTemplate.instance() # change later to modify current bullet to be white
 				bulletColor = Globals.colors.white
+				$ShootCD.wait_time = whiteCD
 			Globals.colors.red: 
+				bullet = $Blade
 				bulletColor = Globals.colors.red
+				$ShootCD.wait_time = redCD
 			Globals.colors.orange:
-				bullet = Globals.missileBulletTemplace.instance()
+				
 				bulletColor = Globals.colors.orange
+				$ShootCD.wait_time = orangeCD
 			Globals.colors.yellow: 
-				bullet = Globals.burstBulletTemplate.instance()
+				bullet = Globals.missileBulletTemplate.instance()
 				bulletColor = Globals.colors.yellow
+				$ShootCD.wait_time = yellowCD
 			Globals.colors.green:
+				bullet = Globals.burstBulletTemplate.instance()
 				bulletColor = Globals.colors.green
+				$ShootCD.wait_time = greenCD
 			Globals.colors.blue: 
 				bullet = Globals.shotgunBulletTemplate.instance()
 				bulletColor = Globals.colors.blue
+				$ShootCD.wait_time = blueCD
 			Globals.colors.violet: 
 				bullet = Globals.gravityBulletTemplate.instance()
 				bulletColor = Globals.colors.violet
+				$ShootCD.wait_time = violetCD
 			_: 
 				bullet = Globals.basicBulletTemplate.instance()
 				bulletColor = Globals.colors.white
+				$ShootCD.wait_time = whiteCD
 		
-		get_parent().add_child(bullet)
+		if bulletColor != Globals.colors.red && bulletColor != Globals.colors.orange:
+			get_parent().add_child(bullet)
+		
 		bullet.applyColor(bulletColor)
 		bullet.launch(shootVector, $"Bullet Spawn".global_position, self.rotation, bulletType)
 		$ShootCD.start()
