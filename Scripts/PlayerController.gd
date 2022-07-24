@@ -91,11 +91,10 @@ func _physics_process(delta):
 func handleMoveInput() -> Vector2:
 	var moveVector = Vector2.ZERO
 	if !Globals.mainScene.usingController:
-		var inputVector = Vector2(Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left") , \
-			 Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up"))
+		var inputVector = Vector2(0, -Input.get_action_strength("ui_up"))
 		moveVector = inputVector.normalized()
 	else:
-		var inputVector = Vector2(Input.get_joy_axis(0, JOY_AXIS_0), Input.get_joy_axis(0, JOY_AXIS_1))
+		var inputVector = Vector2(0, -abs(Input.get_joy_axis(0, JOY_AXIS_1)))
 		if inputVector.length() >= GameManager.deadzone0:
 			moveVector = inputVector.normalized()
 	return moveVector

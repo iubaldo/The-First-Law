@@ -33,6 +33,8 @@ var colorBlue
 var colorViolet
 
 func _ready():
+	OS.min_window_size = Vector2(1024, 576)
+	
 	t0 = [asteroid01, asteroid02, asteroid03]
 	t1 = [asteroid11, asteroid12, asteroid13]
 	t2 = [asteroid21, asteroid22, asteroid23]
