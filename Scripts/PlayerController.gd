@@ -7,9 +7,10 @@ onready var flightTrail1 = $"Flight Trail 1"
 onready var flightTrail2 = $"Flight Trail 2"
 
 # movement variables
+var dashing = false # movement is locked while dashing
 var velocity: Vector2
 const ACCELERATION = 20 * 32
-const DASH_SPEED = 24 * 32
+const DASH_SPEED = 48 * 32
 const MAX_SPEED = 16 * 32
 const FRICTION = 0.95
 const ROTATION_SPEED = 5
@@ -22,7 +23,7 @@ var bulletColor: int = Globals.colors.white
 var whiteCD = 0.5
 var redCD = 0.3
 var yellowCD = 1
-var orangeCD = 1.5
+var orangeCD = 3
 var greenCD = 1
 var blueCD = 0.75
 var violetCD = 1
@@ -47,7 +48,7 @@ func _input(_event):
 				bulletColor = Globals.colors.red
 				$ShootCD.wait_time = redCD
 			Globals.colors.orange:
-				
+				bullet = $Shield
 				bulletColor = Globals.colors.orange
 				$ShootCD.wait_time = orangeCD
 			Globals.colors.yellow: 
@@ -104,11 +105,12 @@ func _input(_event):
 func _physics_process(delta):
 	var moveVector = handleMoveInput()
 	applyMovement(moveVector, delta)
-	
-	if Input.is_action_pressed("rotate_cw"):
-		rotation += ROTATION_SPEED * delta
-	elif Input.is_action_pressed("rotate_ccw"):
-		rotation -= ROTATION_SPEED * delta
+		
+	if !dashing:
+		if Input.is_action_pressed("rotate_cw"):
+			rotation += ROTATION_SPEED * delta
+		elif Input.is_action_pressed("rotate_ccw"):
+			rotation -= ROTATION_SPEED * delta
 		
 	shootVector = Vector2(sin(rotation), -cos(rotation))
 	
@@ -127,13 +129,14 @@ func _physics_process(delta):
 
 func handleMoveInput() -> Vector2:
 	var moveVector = Vector2.ZERO
-	if !Globals.mainScene.usingController:
-		var inputVector = Vector2(0, -Input.get_action_strength("ui_up"))
-		moveVector = inputVector.normalized()
-	else:
-		var inputVector = Vector2(0, -abs(Input.get_joy_axis(0, JOY_AXIS_1)))
-		if inputVector.length() >= GameManager.deadzone0:
+	if !dashing:
+		if !Globals.mainScene.usingController:
+			var inputVector = Vector2(0, -Input.get_action_strength("ui_up"))
 			moveVector = inputVector.normalized()
+		else:
+			var inputVector = Vector2(0, -abs(Input.get_joy_axis(0, JOY_AXIS_1)))
+			if inputVector.length() >= GameManager.deadzone0:
+				moveVector = inputVector.normalized()
 	return moveVector
 	
 
@@ -148,3 +151,17 @@ func applyMovement(moveVector, delta):
 		velocity *= FRICTION
 		
 	var _temp = move_and_slide(transform.basis_xform(velocity), Vector2.UP) # given a variable so the editor stops yelling at me
+
+
+func startDash():
+	var dashVelocity = Vector2.UP * DASH_SPEED
+	$Tween.interpolate_property(self, "velocity", null, dashVelocity, 0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+	$Tween.start()
+
+
+func endDash():
+	dashing = false
+	$Tween.interpolate_property(self, "velocity", null, Vector2.ZERO, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$Tween.start()
+	print("dash ended")
+	
