@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Bullets/GravityBullet.gd"
 }, {
+"base": "Bullet",
+"class": "MissileBullet",
+"language": "GDScript",
+"path": "res://Scripts/Bullets/MissileBullet.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -50,6 +55,7 @@ _global_script_class_icons={
 "BurstBullet": "",
 "GameManager": "",
 "GravityBullet": "",
+"MissileBullet": "",
 "Player": "",
 "ShotgunBullet": ""
 }

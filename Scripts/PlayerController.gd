@@ -2,6 +2,9 @@ extends KinematicBody2D
 class_name Player
 # handles player controls
 
+# preloads
+onready var flightTrail1 = $"Flight Trail 1"
+onready var flightTrail2 = $"Flight Trail 2"
 
 # movement variables
 var velocity: Vector2
@@ -32,6 +35,7 @@ func _input(_event):
 			Globals.colors.red: 
 				bulletColor = Globals.colors.red
 			Globals.colors.orange:
+				bullet = Globals.missileBulletTemplace.instance()
 				bulletColor = Globals.colors.orange
 			Globals.colors.yellow: 
 				bullet = Globals.burstBulletTemplate.instance()
@@ -88,15 +92,15 @@ func _physics_process(delta):
 	shootVector = Vector2(sin(rotation), -cos(rotation))
 	
 	var speedSquared = velocity.length_squared() 
-	if speedSquared > 20:
-		$"Flight Trail 1".emitting = true
-		$"Flight Trail 1".lifetime = 0.5 * (speedSquared / pow(MAX_SPEED, 2))
-		$"Flight Trail 2".emitting = true
-		$"Flight Trail 2".lifetime = 0.5 * (speedSquared / pow(MAX_SPEED, 2))
+	if speedSquared > 25:
+		flightTrail1.emitting = true
+		flightTrail1.lifetime = 0.5 * (speedSquared / pow(MAX_SPEED, 2))
+		flightTrail2.emitting = true
+		flightTrail2.lifetime = 0.5 * (speedSquared / pow(MAX_SPEED, 2))
 		# play flight SFX
 	else:
-		$"Flight Trail 1".emitting = false
-		$"Flight Trail 2".emitting = false
+		flightTrail1.emitting = false
+		flightTrail2.emitting = false
 		# stop playing flight SFX
 
 
@@ -122,4 +126,4 @@ func applyMovement(moveVector, delta):
 	if Input.is_action_pressed("brake"):
 		velocity *= FRICTION
 		
-	var _temp = move_and_slide(transform.basis_xform(velocity), Vector2.UP) # given a variable so the editor stops yelling
+	var _temp = move_and_slide(transform.basis_xform(velocity), Vector2.UP) # given a variable so the editor stops yelling at me

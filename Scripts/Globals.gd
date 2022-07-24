@@ -16,6 +16,7 @@ onready var basicBulletTemplate = preload("res://Scenes/Bullets/BasicBullet.tscn
 onready var shotgunBulletTemplate = preload("res://Scenes/Bullets/ShotgunBullet.tscn")
 onready var gravityBulletTemplate = preload("res://Scenes/Bullets/GravityBullet.tscn")
 onready var burstBulletTemplate = preload("res://Scenes/Bullets/BurstBullet.tscn")
+onready var missileBulletTemplace = preload("res://Scenes/Bullets/MissileBullet.tscn")
 
 var mainScene
 var player

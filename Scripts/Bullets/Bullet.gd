@@ -52,7 +52,7 @@ func onLaunch(vec: Vector2, pos: Vector2, rot: float, clr: int):
 func _on_Bullet_body_entered(body):
 	if body.is_in_group("player"):
 		Globals.mainScene.damagePlayer()
-		queue_free()
+		onHit(body)
 
 
 #hit an asteroid or another bullet
@@ -60,4 +60,9 @@ func _on_Bullet_area_entered(area):
 	if area.is_in_group("asteroid"):
 		if color == area.color || color == Globals.colors.white || area.color == Globals.colors.white:
 			area.destroy()
-			queue_free()
+			onHit(area)
+
+
+# abstract
+func onHit(target):
+	queue_free()
