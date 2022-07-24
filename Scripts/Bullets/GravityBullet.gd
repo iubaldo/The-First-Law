@@ -12,9 +12,11 @@ var steerForce = 15.0
 func handleMovement(delta):
 	var steerVel = Vector2.ZERO
 
-	if target:
+	if is_instance_valid(target):
 		var targetVel = (target.position - position).normalized() * velocity.length()
 		steerVel = (targetVel - velocity).normalized() * steerForce
+	else:
+		acceleration = Vector2.ZERO
 
 	acceleration += steerVel
 	velocity += acceleration * delta
@@ -35,6 +37,7 @@ func onLaunch(vec : Vector2, pos : Vector2, rot : float, clr: int):
 		bulletInst.original = false
 		target = bulletInst
 		Globals.mainScene.get_node("Entities").add_child(bulletInst)
+		bulletInst.applyColor(color)
 		bulletInst.launch(rotateVector(vec, deg2rad(30)), pos, rot + deg2rad(30), clr)
 
 

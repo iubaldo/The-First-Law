@@ -15,6 +15,7 @@ func _on_Burst_Timer_timeout():
 		
 		var bulletInst = Globals.basicBulletTemplate.instance()
 		Globals.mainScene.get_node("Entities").add_child(bulletInst)
+		bulletInst.applyColor(color)
 		bulletInst.launch(Globals.player.shootVector, Globals.player.get_node("Bullet Spawn").global_position,
 			Globals.player.rotation, color)
 		

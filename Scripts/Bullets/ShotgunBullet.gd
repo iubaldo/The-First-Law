@@ -13,6 +13,9 @@ func onLaunch(vec: Vector2, pos: Vector2, rot: float, clr: int):
 	#Globals.mainScene.get_node("Entities").add_child(bulletInst3)
 	Globals.mainScene.get_node("Entities").add_child(bulletInst4)
 	
+	bulletInst2.applyColor(color)
+	bulletInst4.applyColor(color)
+	
 	#bulletInst1.launch(rotateVector(vec, deg2rad(5)), pos, rot + deg2rad(5), clr)
 	bulletInst2.launch(rotateVector(vec, deg2rad(10)), pos, rot + deg2rad(10), clr)
 	#bulletInst3.launch(rotateVector(vec, deg2rad(-5)), pos, rot + deg2rad(-5), clr)

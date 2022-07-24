@@ -17,19 +17,31 @@ func initialize():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	
-	var roll = rng.randi() % 20
+	var roll = rng.randi_range(1, 12)
 	
-	if roll <= 10:
-		color = Globals.colors.white
-	
+	if roll <= 6: 
+		applyColor(Globals.colors.white)
 	match roll:
-		11: color = Globals.colors.red
-		12: color = Globals.colors.orange
-		13: color = Globals.colors.yellow
-		14: color = Globals.colors.green
-		15: color = Globals.colors.blue
-		16: color = Globals.colors.violet
+		7: applyColor(Globals.colors.red)
+		8: applyColor(Globals.colors.orange)
+		9: applyColor(Globals.colors.yellow)
+		10: applyColor(Globals.colors.green)
+		11: applyColor(Globals.colors.blue)
+		12: applyColor(Globals.colors.violet)
 
+
+func applyColor(clr: int):
+	color = clr
+	match color:
+		Globals.colors.white: $Sprite.modulate = Globals.colorWhite
+		Globals.colors.red: $Sprite.modulate = Globals.colorRed
+		Globals.colors.orange: $Sprite.modulate = Globals.colorOrange
+		Globals.colors.yellow: $Sprite.modulate = Globals.colorYellow
+		Globals.colors.green: $Sprite.modulate = Globals.colorGreen
+		Globals.colors.blue: $Sprite.modulate = Globals.colorBlue
+		Globals.colors.violet: $Sprite.modulate = Globals.colorViolet
+		_: $Sprite.modulate = Globals.colorWhite
+	
 
 func _physics_process(delta):
 	self.position += velocity * delta
@@ -55,13 +67,11 @@ func destroy():
 		queue_free()
 		return
 	elif tier == 1:
-		print("making tier 0 children")
 		child1 = Globals.t0[rng.randi() % Globals.t0.size()].instance()
 		child2 = Globals.t0[rng.randi() % Globals.t0.size()].instance()
 		child1.tier = 0
 		child2.tier = 0
 	elif tier == 2:
-		print("making tier 1 children")
 		child1 = Globals.t1[rng.randi() % Globals.t1.size()].instance()
 		child2 = Globals.t1[rng.randi() % Globals.t1.size()].instance()
 		child1.tier = 1
@@ -70,13 +80,13 @@ func destroy():
 	get_parent().call_deferred("add_child", child1)
 	get_parent().call_deferred("add_child", child2)
 	
-	child1.color = self.color
-	child2.color = self.color
+	child1.applyColor(self.color)
+	child2.applyColor(self.color)
 	
 	child1.position = self.position + Vector2(rng.randi_range(-50, 50), rng.randi_range(-50, 50))
 	child1.velocity = rotateVector(velocity, rng.randi_range(-45, 45))
 	child1.rotVelocity = rng.randf_range(-2, 2)
-	child2.position = Vector2(self.position.x + rng.randi_range(-50, 50), self.position.y + rng.randi_range(-50, 50))
+	child2.position = Vector2(self.position.x + rng.randi_range(-50, 50), self.position.y + rng.randi_range(-50, 0))
 	child2.velocity = rotateVector(velocity, rng.randi_range(-45, 45))
 	child2.rotVelocity = rng.randf_range(-2, 2)
 

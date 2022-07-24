@@ -12,6 +12,7 @@ const ROTATION_SPEED = 5
 
 # shooting variables
 var shootVector: Vector2 = Vector2.UP
+var bulletType: int = Globals.colors.white
 var bulletColor: int = Globals.colors.white
 
 
@@ -24,40 +25,54 @@ func _input(_event):
 	if Input.is_action_pressed("shoot") && $ShootCD.is_stopped():
 		var bullet: Bullet
 		
-		match bulletColor:
-			Globals.colors.white: bullet = Globals.basicBulletTemplate.instance() # change later to modify current bullet to be white
-			Globals.colors.red: pass
-			Globals.colors.orange: pass
-			Globals.colors.yellow: bullet = Globals.burstBulletTemplate.instance()
-			Globals.colors.green: pass
-			Globals.colors.blue: bullet = Globals.shotgunBulletTemplate.instance()
-			Globals.colors.violet: bullet = Globals.gravityBulletTemplate.instance()
-			_: bullet = Globals.basicBulletTemplate.instance() # change later
+		match bulletType:
+			Globals.colors.white: 
+				bullet = Globals.basicBulletTemplate.instance() # change later to modify current bullet to be white
+				bulletColor = Globals.colors.white
+			Globals.colors.red: 
+				bulletColor = Globals.colors.red
+			Globals.colors.orange:
+				bulletColor = Globals.colors.orange
+			Globals.colors.yellow: 
+				bullet = Globals.burstBulletTemplate.instance()
+				bulletColor = Globals.colors.yellow
+			Globals.colors.green:
+				bulletColor = Globals.colors.green
+			Globals.colors.blue: 
+				bullet = Globals.shotgunBulletTemplate.instance()
+				bulletColor = Globals.colors.blue
+			Globals.colors.violet: 
+				bullet = Globals.gravityBulletTemplate.instance()
+				bulletColor = Globals.colors.violet
+			_: 
+				bullet = Globals.basicBulletTemplate.instance()
+				bulletColor = Globals.colors.white
 		
 		get_parent().add_child(bullet)
-		bullet.launch(shootVector, $"Bullet Spawn".global_position, self.rotation, bulletColor)
+		bullet.applyColor(bulletColor)
+		bullet.launch(shootVector, $"Bullet Spawn".global_position, self.rotation, bulletType)
 		$ShootCD.start()
 	
 	if Input.is_action_just_pressed("bullet0"):
-		bulletColor = Globals.colors.white
+		bulletType = Globals.colors.white
 		print("switched to white bullet")
 	elif Input.is_action_just_pressed("bullet1"):
-		bulletColor = Globals.colors.red
+		bulletType = Globals.colors.red
 		print("switched to red bullet")
 	elif Input.is_action_just_pressed("bullet2"):
-		bulletColor = Globals.colors.orange
+		bulletType = Globals.colors.orange
 		print("switched to orange bullet")
 	elif Input.is_action_just_pressed("bullet3"):
-		bulletColor = Globals.colors.yellow
+		bulletType = Globals.colors.yellow
 		print("switched to yellow bullet")
 	elif Input.is_action_just_pressed("bullet4"):
-		bulletColor = Globals.colors.green
+		bulletType = Globals.colors.green
 		print("switched to green bullet")
 	elif Input.is_action_just_pressed("bullet5"):
-		bulletColor = Globals.colors.blue
+		bulletType = Globals.colors.blue
 		print("switched to blue bullet")
 	elif Input.is_action_just_pressed("bullet6"):
-		bulletColor = Globals.colors.violet
+		bulletType = Globals.colors.violet
 		print("switched to violet bullet")
 
 

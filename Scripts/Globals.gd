@@ -24,7 +24,23 @@ var t0
 var t1
 var t2
 
+var colorWhite
+var colorRed
+var colorOrange 
+var colorYellow
+var colorGreen
+var colorBlue
+var colorViolet
+
 func _ready():
 	t0 = [asteroid01, asteroid02, asteroid03]
 	t1 = [asteroid11, asteroid12, asteroid13]
 	t2 = [asteroid21, asteroid22, asteroid23]
+	
+	colorWhite = Color8(255, 255, 255)
+	colorRed = Color8(176, 45, 35)
+	colorOrange = Color8(204, 136, 35)
+	colorYellow = Color8(219, 206, 55)
+	colorGreen = Color8(107, 186, 37)
+	colorBlue = Color8(38, 85, 173)
+	colorViolet = Color8(125, 53, 196)

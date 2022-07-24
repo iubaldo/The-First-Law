@@ -7,6 +7,19 @@ var velocity: Vector2
 var speed = 15 * 32
 
 
+func applyColor(clr: int):
+	color = clr
+	match color:
+		Globals.colors.white: $Sprite.modulate = Globals.colorWhite
+		Globals.colors.red: $Sprite.modulate = Globals.colorRed
+		Globals.colors.orange: $Sprite.modulate = Globals.colorOrange
+		Globals.colors.yellow: $Sprite.modulate = Globals.colorYellow
+		Globals.colors.green: $Sprite.modulate = Globals.colorGreen
+		Globals.colors.blue: $Sprite.modulate = Globals.colorBlue
+		Globals.colors.violet: $Sprite.modulate = Globals.colorViolet
+		_: $Sprite.modulate = Globals.colorWhite
+
+
 func _physics_process(delta):
 	onPhysicsProcess(delta)
 	handleMovement(delta)
@@ -45,5 +58,6 @@ func _on_Bullet_body_entered(body):
 #hit an asteroid or another bullet
 func _on_Bullet_area_entered(area):
 	if area.is_in_group("asteroid"):
-		area.destroy()
-		queue_free()
+		if color == area.color || color == Globals.colors.white || area.color == Globals.colors.white:
+			area.destroy()
+			queue_free()
