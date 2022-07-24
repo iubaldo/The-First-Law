@@ -2,6 +2,7 @@ extends Area2D
 class_name Asteroid
 # defines asteroid behavior
 
+var invincible = false
 var color: int = 0
 var tier: int = 0
 
@@ -57,6 +58,9 @@ func launch(var vel: Vector2, var rotVel: int, var pos: Vector2, var rot: float)
 
 # split into 2 asteroids a tier below, or destroy self if tier 0
 func destroy():
+	if invincible:
+		return
+	
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	
@@ -89,9 +93,28 @@ func destroy():
 	child2.position = Vector2(self.position.x + rng.randi_range(-50, 50), self.position.y + rng.randi_range(-50, 0))
 	child2.velocity = rotateVector(velocity, rng.randi_range(-45, 45))
 	child2.rotVelocity = rng.randf_range(-2, 2)
+	
+	var t1 = Timer.new()
+	t1.wait_time = 0.5
+	t1.autostart = true
+	get_parent().add_child(t1)
+	t1.connect("timeout", child1, "_on_timer_timeout")
+	t1.start()
+	child1.invincible = true
+	var t2 = Timer.new()
+	t2.wait_time = 0.5
+	t2.autostart = true
+	get_parent().add_child(t2)
+	t2.connect("timeout", child2, "_on_timer_timeout")
+	t2.start()
+	child2.invincible = true
 
 	queue_free()
 
 
 func rotateVector(vec : Vector2, delta : float):
 	return Vector2(vec.x * cos(delta) - vec.y * sin(delta), vec.x * sin(delta) + vec.y * cos(delta))
+
+
+func _on_timer_timeout():
+	invincible = false
