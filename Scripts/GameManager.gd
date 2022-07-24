@@ -5,6 +5,7 @@ class_name GameManager
 onready var spawnTimer = $"Asteroid Spawn Timer"
 
 signal healthChanged(newHP)
+signal scoreChanged(newScore)
 
 # screen stuff
 var bounds: Rect2
@@ -23,6 +24,7 @@ const deadzone0 = 0.3
 func _ready():
 	Globals.set("mainScene", self)
 	connect("healthChanged", Globals.hpbar, "updateHealthBar")
+	connect("scoreChanged", Globals.scoreboard, "updateScoreboard")
 	
 	var screenSize = Vector2(get_viewport().get_visible_rect().size.x - 10, get_viewport().get_visible_rect().size.y - 10)
 	bounds = Rect2(Vector2(10, 10), screenSize)
@@ -31,6 +33,12 @@ func _ready():
 func _input(_event):
 	if Input.is_action_just_pressed("debug_start"): # replace with some sort of animation of "press any key to start"
 		spawnTimer.start()
+
+
+func scoreUpdated(amount):
+	score += amount
+	print("new score: " + var2str(score))
+	emit_signal("scoreChanged", score)
 
 
 func damagePlayer():

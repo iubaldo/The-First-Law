@@ -20,6 +20,9 @@ margin_right = 896.0
 margin_bottom = 504.0
 rect_scale = Vector2( 0.53, 0.53 )
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="HP-4" type="TextureRect" parent="."]
 visible = false
@@ -29,6 +32,9 @@ margin_right = 896.0
 margin_bottom = 504.0
 rect_scale = Vector2( 0.53, 0.53 )
 texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="HP-3" type="TextureRect" parent="."]
 visible = false
@@ -38,6 +44,9 @@ margin_right = 896.0
 margin_bottom = 504.0
 rect_scale = Vector2( 0.53, 0.53 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="HP-2" type="TextureRect" parent="."]
 visible = false
@@ -47,6 +56,9 @@ margin_right = 896.0
 margin_bottom = 504.0
 rect_scale = Vector2( 0.53, 0.53 )
 texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="HP-1" type="TextureRect" parent="."]
 visible = false
@@ -56,6 +68,9 @@ margin_right = 896.0
 margin_bottom = 504.0
 rect_scale = Vector2( 0.53, 0.53 )
 texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="HP-0" type="TextureRect" parent="."]
 visible = false
@@ -65,3 +80,6 @@ margin_right = 896.0
 margin_bottom = 504.0
 rect_scale = Vector2( 0.53, 0.53 )
 texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}

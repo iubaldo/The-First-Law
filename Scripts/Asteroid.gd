@@ -2,6 +2,8 @@ extends Area2D
 class_name Asteroid
 # defines asteroid behavior
 
+signal updateScore(amount)
+
 var invincible = false
 var color: int = 0
 var tier: int = 0
@@ -12,6 +14,7 @@ var rotVelocity = 0
 
 func _ready():
 	add_to_group("asteroid")
+	connect("updateScore", Globals.mainScene, "scoreUpdated")
 
 
 func initialize():
@@ -60,6 +63,9 @@ func launch(var vel: Vector2, var rotVel: int, var pos: Vector2, var rot: float)
 func destroy():
 	if invincible:
 		return
+	
+	emit_signal("updateScore", 100)
+	print("updating score")
 	
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
