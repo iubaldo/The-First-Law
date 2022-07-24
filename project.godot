@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/UI Elements/HealthBar.gd"
 }, {
+"base": "Control",
+"class": "Hotbar",
+"language": "GDScript",
+"path": "res://Scripts/UI Elements/Hotbar.gd"
+}, {
 "base": "Bullet",
 "class": "MissileBullet",
 "language": "GDScript",
@@ -77,6 +82,7 @@ _global_script_class_icons={
 "GameManager": "",
 "GravityBullet": "",
 "HealthBar": "",
+"Hotbar": "",
 "MissileBullet": "",
 "Player": "",
 "ScoreBoard": "",

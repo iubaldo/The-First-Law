@@ -15,10 +15,10 @@ __meta__ = {
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 6.0
-margin_right = 902.0
+margin_left = 1.0
+margin_right = 897.0
 margin_bottom = 504.0
-rect_scale = Vector2( 0.53, 0.53 )
+rect_scale = Vector2( 0.533, 0.533 )
 texture = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true

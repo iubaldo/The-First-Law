@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hp-2.png-a37facf270483da085a76a061ca71ecc.stex"
+path="res://.import/hotbar-orange.png-6f1fce0507e9404a6039f8c0decb4af0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI Elements/Health Bar/hp-2.png"
-dest_files=[ "res://.import/hp-2.png-a37facf270483da085a76a061ca71ecc.stex" ]
+source_file="res://Sprites/UI Elements/Hotbar/hotbar-orange.png"
+dest_files=[ "res://.import/hotbar-orange.png-6f1fce0507e9404a6039f8c0decb4af0.stex" ]
 
 [params]
 

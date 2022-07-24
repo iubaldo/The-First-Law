@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hp-2.png-a37facf270483da085a76a061ca71ecc.stex"
+path="res://.import/shotgunIcon.png-b79aa8d65e0ddb137d2016ea97be6175.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI Elements/Health Bar/hp-2.png"
-dest_files=[ "res://.import/hp-2.png-a37facf270483da085a76a061ca71ecc.stex" ]
+source_file="res://Sprites/UI Elements/Hotbar/Icons/shotgunIcon.png"
+dest_files=[ "res://.import/shotgunIcon.png-b79aa8d65e0ddb137d2016ea97be6175.stex" ]
 
 [params]
 

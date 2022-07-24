@@ -6,6 +6,8 @@ class_name Player
 onready var flightTrail1 = $"Flight Trail 1"
 onready var flightTrail2 = $"Flight Trail 2"
 
+signal bulletChanged(clr)
+
 # movement variables
 var dashing = false # movement is locked while dashing
 var velocity: Vector2
@@ -32,6 +34,7 @@ var violetCD = 1
 func _ready():
 	Globals.set("player", self)
 	add_to_group("player")
+	connect("bulletChanged", Globals.hotbar, "updateHotbar")
 
 
 func _input(_event):
@@ -81,25 +84,25 @@ func _input(_event):
 	
 	if Input.is_action_just_pressed("bullet0"):
 		bulletType = Globals.colors.white
-		print("switched to white bullet")
+		emit_signal("bulletChanged", bulletType)
 	elif Input.is_action_just_pressed("bullet1"):
 		bulletType = Globals.colors.red
-		print("switched to red bullet")
+		emit_signal("bulletChanged", bulletType)
 	elif Input.is_action_just_pressed("bullet2"):
 		bulletType = Globals.colors.orange
-		print("switched to orange bullet")
+		emit_signal("bulletChanged", bulletType)
 	elif Input.is_action_just_pressed("bullet3"):
 		bulletType = Globals.colors.yellow
-		print("switched to yellow bullet")
+		emit_signal("bulletChanged", bulletType)
 	elif Input.is_action_just_pressed("bullet4"):
 		bulletType = Globals.colors.green
-		print("switched to green bullet")
+		emit_signal("bulletChanged", bulletType)
 	elif Input.is_action_just_pressed("bullet5"):
 		bulletType = Globals.colors.blue
-		print("switched to blue bullet")
+		emit_signal("bulletChanged", bulletType)
 	elif Input.is_action_just_pressed("bullet6"):
 		bulletType = Globals.colors.violet
-		print("switched to violet bullet")
+		emit_signal("bulletChanged", bulletType)
 
 
 func _physics_process(delta):

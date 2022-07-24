@@ -22,6 +22,7 @@ var mainScene
 var player
 var hpbar
 var scoreboard
+var hotbar
 
 var t0
 var t1

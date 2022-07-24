@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hp-2.png-a37facf270483da085a76a061ca71ecc.stex"
+path="res://.import/missileIcon.png-5766522eb2a5c5554787ef3cf3a50c38.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI Elements/Health Bar/hp-2.png"
-dest_files=[ "res://.import/hp-2.png-a37facf270483da085a76a061ca71ecc.stex" ]
+source_file="res://Sprites/UI Elements/Hotbar/Icons/missileIcon.png"
+dest_files=[ "res://.import/missileIcon.png-5766522eb2a5c5554787ef3cf3a50c38.stex" ]
 
 [params]
 
