@@ -86,6 +86,18 @@ func _physics_process(delta):
 		rotation -= ROTATION_SPEED * delta
 		
 	shootVector = Vector2(sin(rotation), -cos(rotation))
+	
+	var speedSquared = velocity.length_squared() 
+	if speedSquared > 20:
+		$"Flight Trail 1".emitting = true
+		$"Flight Trail 1".lifetime = 0.5 * (speedSquared / pow(MAX_SPEED, 2))
+		$"Flight Trail 2".emitting = true
+		$"Flight Trail 2".lifetime = 0.5 * (speedSquared / pow(MAX_SPEED, 2))
+		# play flight SFX
+	else:
+		$"Flight Trail 1".emitting = false
+		$"Flight Trail 2".emitting = false
+		# stop playing flight SFX
 
 
 func handleMoveInput() -> Vector2:
