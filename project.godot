@@ -93,7 +93,7 @@ _global_script_class_icons={
 [application]
 
 config/name="The First Law"
-run/main_scene="res://Scenes/Main Scene.tscn"
+run/main_scene="res://Scenes/Main Menu.tscn"
 
 [autoload]
 

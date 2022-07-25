@@ -28,6 +28,8 @@ func _ready():
 	
 	var screenSize = Vector2(get_viewport().get_visible_rect().size.x - 10, get_viewport().get_visible_rect().size.y - 10)
 	bounds = Rect2(Vector2(10, 10), screenSize)
+	
+	$AnimationPlayer.play("UIAnimation")
 
 
 func _input(_event):
@@ -52,6 +54,10 @@ func damagePlayer():
 	
 	if playerHP <= 0:
 		endGame()
+
+
+func startGame():
+	_on_Asteroid_Spawn_Timer_timeout()
 
 
 func endGame():
@@ -101,7 +107,7 @@ func _on_Asteroid_Spawn_Timer_timeout():
 	
 	# where to aim the asteroid
 	angle = rng.randi_range(0, 360)
-	radius = rng.randi_range(0, 400)
+	radius = rng.randi_range(0, 300)
 	var targetPos = Vector2(radius * cos(angle), radius * sin(angle)) + Globals.player.global_position
 	var targetVec = (targetPos - spawnPos).normalized()
 	var targetVel = targetVec * rng.randi_range(50, 70)

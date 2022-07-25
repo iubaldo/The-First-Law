@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/GameManager.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/background.png" type="Texture" id=2]
@@ -9,6 +9,61 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 512, 288 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "UIAnimation"
+length = 0.75
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI Elements/Health Bar:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.75 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ Vector2( -382, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI Elements/Scoreboard:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.75 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ Vector2( 130, 0 ), Vector2( -256, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("UI Elements/Hotbar:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.75 ),
+"transitions": PoolRealArray( 1, 0.5 ),
+"update": 0,
+"values": [ Vector2( 0, 100 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.75 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "startGame"
+} ]
+}
 
 [node name="Main Scene" type="Node2D"]
 script = ExtResource( 1 )
@@ -23,16 +78,25 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Health Bar" parent="UI Elements" instance=ExtResource( 4 )]
-margin_right = -983.28
-margin_bottom = -560.12
+margin_left = -382.0
+margin_right = -422.0
+margin_bottom = -40.0
 
 [node name="Scoreboard" parent="UI Elements" instance=ExtResource( 5 )]
-margin_left = -256.0
-margin_right = -256.0
+margin_left = 130.0
+margin_right = 130.0
 rect_scale = Vector2( 1.25, 1.25 )
 
 [node name="Hotbar" parent="UI Elements" instance=ExtResource( 6 )]
+margin_top = 100.0
+margin_bottom = 99.9999
 rect_pivot_offset = Vector2( 125, 239 )
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Player" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 523, 293 )
+scale = Vector2( 0.533333, 0.555556 )
 
 [node name="Area Bounds" type="Area2D" parent="."]
 
@@ -43,12 +107,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Entities" type="Node2D" parent="."]
-
-[node name="Player" parent="Entities" instance=ExtResource( 3 )]
-position = Vector2( 523, 293 )
-scale = Vector2( 0.533333, 0.555556 )
-
 [node name="Invincibility Timer" type="Timer" parent="."]
 wait_time = 1.5
 one_shot = true
@@ -56,6 +114,9 @@ one_shot = true
 [node name="Asteroid Spawn Timer" type="Timer" parent="."]
 wait_time = 6.0
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/UIAnimation = SubResource( 2 )
 
 [connection signal="area_exited" from="Area Bounds" to="." method="_on_Area_Bounds_area_exited"]
 [connection signal="body_exited" from="Area Bounds" to="." method="_on_Area_Bounds_body_exited"]

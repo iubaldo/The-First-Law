@@ -103,14 +103,14 @@ func destroy():
 	var t1 = Timer.new()
 	t1.wait_time = 0.5
 	t1.autostart = true
-	get_parent().add_child(t1)
+	add_child(t1)
 	t1.connect("timeout", child1, "_on_timer_timeout")
 	t1.start()
 	child1.invincible = true
 	var t2 = Timer.new()
 	t2.wait_time = 0.5
 	t2.autostart = true
-	get_parent().add_child(t2)
+	add_child(t2)
 	t2.connect("timeout", child2, "_on_timer_timeout")
 	t2.start()
 	child2.invincible = true

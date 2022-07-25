@@ -101,9 +101,9 @@ func _physics_process(delta):
 	applyMovement(moveVector, delta)
 		
 	if !dashing:
-		if Input.is_action_pressed("rotate_cw"):
+		if Input.is_action_pressed("ui_right"):
 			rotation += ROTATION_SPEED * delta
-		elif Input.is_action_pressed("rotate_ccw"):
+		elif Input.is_action_pressed("ui_left"):
 			rotation -= ROTATION_SPEED * delta
 		
 	shootVector = Vector2(sin(rotation), -cos(rotation))
@@ -141,13 +141,14 @@ func applyMovement(moveVector, delta):
 		velocity.y += moveVector.y * ACCELERATION * delta
 		velocity.y = clamp(velocity.y, -MAX_SPEED, MAX_SPEED)
 	
-	if Input.is_action_pressed("brake"):
+	if Input.is_action_pressed("ui_down"):
 		velocity *= FRICTION
 		
 	var _temp = move_and_slide(transform.basis_xform(velocity), Vector2.UP) # given a variable so the editor stops yelling at me
 
 
 func startDash():
+	dashing = true
 	var dashVelocity = Vector2.UP * DASH_SPEED
 	$Tween.interpolate_property(self, "velocity", null, dashVelocity, 0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.start()

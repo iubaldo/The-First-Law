@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/button press (modern 7).ogg-c1cb815671daccf9784204499dd7dc36.oggstr"
+
+[deps]
+
+source_file="res://Sounds/button press (modern 7).ogg"
+dest_files=[ "res://.import/button press (modern 7).ogg-c1cb815671daccf9784204499dd7dc36.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
