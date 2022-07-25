@@ -39,12 +39,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Bullets/GravityBullet.gd"
 }, {
-"base": "Control",
+"base": "Node2D",
 "class": "HealthBar",
 "language": "GDScript",
 "path": "res://Scripts/UI Elements/HealthBar.gd"
 }, {
-"base": "Control",
+"base": "Node2D",
 "class": "Hotbar",
 "language": "GDScript",
 "path": "res://Scripts/UI Elements/Hotbar.gd"
@@ -59,7 +59,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/PlayerController.gd"
 }, {
-"base": "Control",
+"base": "Node2D",
 "class": "ScoreBoard",
 "language": "GDScript",
 "path": "res://Scripts/UI Elements/Scoreboard.gd"

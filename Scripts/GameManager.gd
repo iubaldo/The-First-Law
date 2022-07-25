@@ -13,7 +13,7 @@ const MIN_SPAWN_RADIUS = 650
 const MAX_SPAWN_RADIUS = 750
 
 # player stuff
-var score: int
+var score: int = 0
 var playerHP: int = 5 # maybe change based on difficulty later (5/3/1)?
 var invincible = false
 
@@ -25,6 +25,7 @@ func _ready():
 	Globals.set("mainScene", self)
 	connect("healthChanged", Globals.hpbar, "updateHealthBar")
 	connect("scoreChanged", Globals.scoreboard, "updateScoreboard")
+	$Entities/Player.connect("finishedDeathAnim", self, "gameOver")
 	
 	var screenSize = Vector2(get_viewport().get_visible_rect().size.x - 10, get_viewport().get_visible_rect().size.y - 10)
 	bounds = Rect2(Vector2(10, 10), screenSize)
@@ -53,16 +54,20 @@ func damagePlayer():
 	$"Invincibility Timer".start()
 	
 	if playerHP <= 0:
-		endGame()
+		killPlayer()
 
 
 func startGame():
 	_on_Asteroid_Spawn_Timer_timeout()
 
 
-func endGame():
-	print("you lose!")
-	pass
+func killPlayer():
+	Globals.player.animationPlayer.play("DeathAnimation")
+
+
+func gameOver():
+	Globals.finalScore = score
+	get_tree().change_scene("res://Scenes/Game Over.tscn")
 
 
 # teleports player when they reach the end of the screen

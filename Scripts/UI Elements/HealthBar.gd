@@ -1,4 +1,4 @@
-extends Control
+extends Node2D
 class_name HealthBar
 
 onready var hp_5 = $"HP-5"

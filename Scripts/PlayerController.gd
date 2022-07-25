@@ -3,10 +3,14 @@ class_name Player
 # handles player controls
 
 # preloads
+onready var playerSprite = $"Player Sprite"
+onready var animationPlayer = $AnimationPlayer
 onready var flightTrail1 = $"Flight Trail 1"
 onready var flightTrail2 = $"Flight Trail 2"
+onready var explosion = $MissileExplosion
 
 signal bulletChanged(clr)
+signal finishedDeathAnim
 
 # movement variables
 var dashing = false # movement is locked while dashing
@@ -159,4 +163,7 @@ func endDash():
 	$Tween.interpolate_property(self, "velocity", null, Vector2.ZERO, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()
 	print("dash ended")
-	
+
+
+func onDeathAnimFinish():
+	emit_signal("finishedDeathAnim")

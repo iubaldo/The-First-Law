@@ -24,6 +24,8 @@ var hpbar
 var scoreboard
 var hotbar
 
+var finalScore
+
 var t0
 var t1
 var t2

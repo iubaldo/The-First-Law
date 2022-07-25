@@ -14,134 +14,62 @@
 [ext_resource path="res://Sprites/UI Elements/Hotbar/hotbar-red.png" type="Texture" id=12]
 [ext_resource path="res://Scripts/UI Elements/Hotbar.gd" type="Script" id=13]
 
-[node name="Hotbar" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Hotbar" type="Node2D"]
+position = Vector2( 512, 288 )
+scale = Vector2( 0.533, 0.533 )
 script = ExtResource( 13 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Hotbar-Red" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 896.0
-margin_bottom = 504.0
-rect_scale = Vector2( 0.533, 0.533 )
+[node name="Hotbar-Red" type="Sprite" parent="."]
 texture = ExtResource( 12 )
 
-[node name="Hotbar-Orange" type="TextureRect" parent="."]
+[node name="Hotbar-Orange" type="Sprite" parent="."]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -984.0
-margin_bottom = -536.0
-rect_scale = Vector2( 0.533, 0.533 )
 texture = ExtResource( 2 )
 
-[node name="Hotbar-Yellow" type="TextureRect" parent="."]
+[node name="Hotbar-Yellow" type="Sprite" parent="."]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -984.0
-margin_bottom = -536.0
-rect_scale = Vector2( 0.533, 0.533 )
 texture = ExtResource( 3 )
 
-[node name="Hotbar-Green" type="TextureRect" parent="."]
+[node name="Hotbar-Green" type="Sprite" parent="."]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -984.0
-margin_bottom = -536.0
-rect_scale = Vector2( 0.533, 0.533 )
 texture = ExtResource( 6 )
 
-[node name="Hotbar-Blue" type="TextureRect" parent="."]
+[node name="Hotbar-Blue" type="Sprite" parent="."]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -984.0
-margin_bottom = -536.0
-rect_scale = Vector2( 0.533, 0.533 )
 texture = ExtResource( 4 )
 
-[node name="Hotbar-Violet" type="TextureRect" parent="."]
+[node name="Hotbar-Violet" type="Sprite" parent="."]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = -984.0
-margin_bottom = -536.0
-rect_scale = Vector2( 0.533, 0.533 )
 texture = ExtResource( 7 )
 
-[node name="Icon-Blade" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 408.0
-margin_top = 378.0
-margin_right = -488.0
-margin_bottom = -70.0
-rect_scale = Vector2( 0.533, 0.533 )
-rect_pivot_offset = Vector2( 148.218, 275.797 )
+[node name="Icon-Blade" type="Sprite" parent="."]
+position = Vector2( 0, 475 )
 texture = ExtResource( 5 )
 
-[node name="Icon-Shield" type="TextureRect" parent="."]
+[node name="Icon-Shield" type="Sprite" parent="."]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 408.0
-margin_top = 380.0
-margin_right = -488.0
-margin_bottom = -68.0
-rect_scale = Vector2( 0.533, 0.533 )
-rect_pivot_offset = Vector2( 148.218, 275.797 )
+position = Vector2( 0, 475 )
 texture = ExtResource( 1 )
 
-[node name="Icon-Missile" type="TextureRect" parent="."]
+[node name="Icon-Missile" type="Sprite" parent="."]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 408.0
-margin_top = 378.0
-margin_right = -488.0
-margin_bottom = -70.0
-rect_scale = Vector2( 0.533, 0.533 )
-rect_pivot_offset = Vector2( 148.218, 275.797 )
+position = Vector2( 0, 475 )
 texture = ExtResource( 8 )
 
-[node name="Icon-Burst" type="TextureRect" parent="."]
+[node name="Icon-Burst" type="Sprite" parent="."]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 408.0
-margin_top = 383.0
-margin_right = -488.0
-margin_bottom = -65.0
-rect_scale = Vector2( 0.533, 0.533 )
-rect_pivot_offset = Vector2( 148.218, 275.797 )
+position = Vector2( 0, 475 )
 texture = ExtResource( 9 )
 
-[node name="Icon-Shotgun" type="TextureRect" parent="."]
+[node name="Icon-Shotgun" type="Sprite" parent="."]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 408.0
-margin_top = 380.0
-margin_right = -488.0
-margin_bottom = -68.0
-rect_scale = Vector2( 0.533, 0.533 )
-rect_pivot_offset = Vector2( 148.218, 275.797 )
+position = Vector2( 0, 475 )
 texture = ExtResource( 10 )
 
-[node name="Icon-Gravity" type="TextureRect" parent="."]
+[node name="Icon-Gravity" type="Sprite" parent="."]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 408.0
-margin_top = 380.0
-margin_right = -488.0
-margin_bottom = -68.0
-rect_scale = Vector2( 0.533, 0.533 )
-rect_pivot_offset = Vector2( 148.218, 275.797 )
+position = Vector2( 0, 475 )
 texture = ExtResource( 11 )

@@ -14,55 +14,55 @@ extents = Vector2( 512, 288 )
 resource_name = "UIAnimation"
 length = 0.75
 step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("UI Elements/Health Bar:rect_position")
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.75 ),
-"transitions": PoolRealArray( 1, 0.5 ),
-"update": 0,
-"values": [ Vector2( -382, 0 ), Vector2( 0, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("UI Elements/Scoreboard:rect_position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.75 ),
-"transitions": PoolRealArray( 1, 0.5 ),
-"update": 0,
-"values": [ Vector2( 130, 0 ), Vector2( -256, 0 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("UI Elements/Hotbar:rect_position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.75 ),
-"transitions": PoolRealArray( 1, 0.5 ),
-"update": 0,
-"values": [ Vector2( 0, 100 ), Vector2( 0, 0 ) ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0.75 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "startGame"
 } ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI Elements/Health Bar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.25, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 130, 288 ), Vector2( 410.133, 288 ), Vector2( 512, 288 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("UI Elements/Scoreboard:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.25, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 310, 0 ), Vector2( 82.6667, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("UI Elements/Hotbar:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.25, 0.75 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 512, 385 ), Vector2( 512, 313.867 ), Vector2( 512, 288 ) ]
 }
 
 [node name="Main Scene" type="Node2D"]
@@ -73,24 +73,17 @@ position = Vector2( 512, 288 )
 scale = Vector2( 0.533333, 0.534259 )
 texture = ExtResource( 2 )
 
-[node name="UI Elements" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="UI Elements" type="Node2D" parent="."]
+z_index = 1
 
 [node name="Health Bar" parent="UI Elements" instance=ExtResource( 4 )]
-margin_left = -382.0
-margin_right = -422.0
-margin_bottom = -40.0
+position = Vector2( 130, 288 )
 
 [node name="Scoreboard" parent="UI Elements" instance=ExtResource( 5 )]
-margin_left = 130.0
-margin_right = 130.0
-rect_scale = Vector2( 1.25, 1.25 )
+position = Vector2( 310, 0 )
 
 [node name="Hotbar" parent="UI Elements" instance=ExtResource( 6 )]
-margin_top = 100.0
-margin_bottom = 99.9999
-rect_pivot_offset = Vector2( 125, 239 )
+position = Vector2( 512, 385 )
 
 [node name="Entities" type="Node2D" parent="."]
 
