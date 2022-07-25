@@ -116,3 +116,14 @@ func rotateVector(vec : Vector2, delta : float):
 
 func _on_Timer_timeout():
 	invincible = false
+
+
+func _on_Asteroid_area_entered(area):
+	if area.is_in_group("asteroid"):
+		area.velocity -= velocity
+
+
+func _on_Asteroid_body_entered(body):
+	velocity += (-body.velocity * 0.25)
+	Globals.mainScene.damagePlayer()
+	destroy()

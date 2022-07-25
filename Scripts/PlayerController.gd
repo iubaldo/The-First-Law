@@ -153,6 +153,7 @@ func applyMovement(moveVector, delta):
 
 func startDash():
 	dashing = true
+	Globals.mainScene.invincible = true
 	var dashVelocity = Vector2.UP * DASH_SPEED
 	$Tween.interpolate_property(self, "velocity", null, dashVelocity, 0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.start()
@@ -160,6 +161,7 @@ func startDash():
 
 func endDash():
 	dashing = false
+	Globals.mainScene.invincible = false
 	$Tween.interpolate_property(self, "velocity", null, Vector2.ZERO, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()
 

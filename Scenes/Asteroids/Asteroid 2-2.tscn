@@ -19,4 +19,6 @@ texture = ExtResource( 1 )
 wait_time = 0.5
 one_shot = true
 
+[connection signal="area_entered" from="." to="." method="_on_Asteroid_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Asteroid_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

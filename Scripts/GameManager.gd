@@ -53,6 +53,7 @@ func damagePlayer():
 	emit_signal("healthChanged", playerHP)
 	invincible = true
 	$"Invincibility Timer".start()
+	Globals.player.animationPlayer.play("HurtAnimation")
 	
 	if playerHP <= 0:
 		killPlayer()
