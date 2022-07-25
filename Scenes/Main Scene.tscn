@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/GameManager.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/background.png" type="Texture" id=2]
@@ -9,9 +9,67 @@
 [ext_resource path="res://Sounds/hurt.wav" type="AudioStream" id=7]
 [ext_resource path="res://Sounds/playerdeath.wav" type="AudioStream" id=8]
 [ext_resource path="res://Sounds/asteroiddestroy.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/BGM/バーサルビート.mp3" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/BGM/ドロップバース.mp3" type="AudioStream" id=11]
+[ext_resource path="res://Sounds/BGM/ハルシオン.mp3" type="AudioStream" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 512, 288 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Crossfade1-2"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainSceneBGM1:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 5.65686, 1 ),
+"update": 0,
+"values": [ 0.0, -80.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainSceneBGM2:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 5.65686, 1 ),
+"update": 0,
+"values": [ -80.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Crossfade2-3"
+tracks/0/type = "value"
+tracks/0/path = NodePath("MainSceneBGM2:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 5.65685, 1 ),
+"update": 0,
+"values": [ 0.0, -80.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MainSceneBGM3:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 5.65685, 1 ),
+"update": 0,
+"values": [ -80.0, 0.0 ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "UIAnimation"
@@ -112,6 +170,8 @@ wait_time = 6.0
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Crossfade1-2 = SubResource( 3 )
+anims/Crossfade2-3 = SubResource( 4 )
 anims/UIAnimation = SubResource( 2 )
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
@@ -122,6 +182,20 @@ stream = ExtResource( 8 )
 
 [node name="AsteroidDestroySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
+
+[node name="MainSceneBGM1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+autoplay = true
+
+[node name="MainSceneBGM2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -80.0
+autoplay = true
+
+[node name="MainSceneBGM3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -80.0
+autoplay = true
 
 [connection signal="area_exited" from="Area Bounds" to="." method="_on_Area_Bounds_area_exited"]
 [connection signal="body_exited" from="Area Bounds" to="." method="_on_Area_Bounds_body_exited"]

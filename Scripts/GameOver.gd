@@ -3,12 +3,12 @@ extends Node2D
 
 func _ready():
 	$AnimationPlayer.play("MainMenuAnimation")
+	$AnimationPlayer.play("EaseBGM")
 	$"UI Elements/Title2".text = "final score:\n" + var2str(Globals.finalScore)
 
 
 func _on_Start_Button_button_down():
 	$"UI Elements/VBoxContainer/Start Button/StartSound".play()
-
 
 
 func _on_Quit_Button_button_down():

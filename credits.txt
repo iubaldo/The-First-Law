@@ -4,3 +4,11 @@ key icons: https://thoseawesomeguys.com/prompts/
 sound effects:
 	game SFX: https://sfxr.me
 	buttons: https://ellr.itch.io/universal-ui-soundpack
+music:
+	main menu: https://www.youtube.com/watch?v=9EzV0w-UUGY
+	game: 
+		full hp: https://www.youtube.com/watch?v=D-6a4HDx8AY
+		damaged: https://www.youtube.com/watch?v=OGim5AOrEok
+		1 hp: https://www.youtube.com/watch?v=acw89bOCdIg
+	game over: https://www.youtube.com/watch?v=N1YgjhrV2MU
+	

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/日没廃校.mp3-3e945882f88aeadf5ab2fc1375c50d18.mp3str"
+
+[deps]
+
+source_file="res://Sounds/BGM/日没廃校.mp3"
+dest_files=[ "res://.import/日没廃校.mp3-3e945882f88aeadf5ab2fc1375c50d18.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

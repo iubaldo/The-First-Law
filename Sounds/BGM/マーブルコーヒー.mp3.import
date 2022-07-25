@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/マーブルコーヒー.mp3-0f2bbcb7740c647338eec8dfa211c9bb.mp3str"
+
+[deps]
+
+source_file="res://Sounds/BGM/マーブルコーヒー.mp3"
+dest_files=[ "res://.import/マーブルコーヒー.mp3-0f2bbcb7740c647338eec8dfa211c9bb.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

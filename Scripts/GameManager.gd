@@ -49,6 +49,12 @@ func damagePlayer():
 		return
 	
 	playerHP -= 1
+	
+	if playerHP <= 4 && playerHP > 1 && $MainSceneBGM2.volume_db == -80:
+		$AnimationPlayer.play("Crossfade1-2")
+	elif playerHP == 1 && $MainSceneBGM3.volume_db == -80:
+		$AnimationPlayer.play("Crossfade2-3")
+	
 	$HurtSound.play()
 	emit_signal("healthChanged", playerHP)
 	invincible = true
