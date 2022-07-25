@@ -3,11 +3,12 @@ class_name MissileBullet
 # fires a a slow-moving bullet that explodes on impact
 
 func onReady():
-	speed = 10 * 32
+	speed = 5 * 32
 
 
 func onHit(target):
 	velocity = Vector2.ZERO
+	$ExplosionSound.play()
 	$MissileExplosion.start()
 	$DestroyTimer.start()
 	$CollisionPolygon2D.set_deferred("disabled", true)

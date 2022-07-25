@@ -1,4 +1,6 @@
 player sprite (that I totally didn't just trace over): https://imgur.com/PavSmGy
 background: https://wallhere.com/en/wallpaper/1532183
-button sounds: https://ellr.itch.io/universal-ui-soundpack
 key icons: https://thoseawesomeguys.com/prompts/
+sound effects:
+	game SFX: https://sfxr.me
+	buttons: https://ellr.itch.io/universal-ui-soundpack

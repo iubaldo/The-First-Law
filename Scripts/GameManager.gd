@@ -39,8 +39,8 @@ func _input(_event):
 
 
 func scoreUpdated(amount):
+	$AsteroidDestroySound.play()
 	score += amount
-	print("new score: " + var2str(score))
 	emit_signal("scoreChanged", score)
 
 
@@ -49,6 +49,7 @@ func damagePlayer():
 		return
 	
 	playerHP -= 1
+	$HurtSound.play()
 	emit_signal("healthChanged", playerHP)
 	invincible = true
 	$"Invincibility Timer".start()
@@ -62,6 +63,7 @@ func startGame():
 
 
 func killPlayer():
+	$DeathSound.play()
 	Globals.player.animationPlayer.play("DeathAnimation")
 
 
@@ -83,9 +85,6 @@ func _on_Area_Bounds_body_exited(body):
 
 
 func _on_Area_Bounds_area_exited(area):
-	if area.is_in_group("asteroid"):
-		area.queue_free()
-	
 	if area.position.x <= 10:
 		area.position = Vector2(bounds.size.x, area.position.y)
 	elif area.position.x >= bounds.size.x:
@@ -133,5 +132,5 @@ func _on_Asteroid_Spawn_Timer_timeout():
 	asteroidInst.launch(targetVel, rotVel, spawnPos, angle)
 	# print("launched asteroid from " + var2str(spawnPos) + ", targeting " + var2str(targetPos))
 	
-	spawnTimer.wait_time = rng.randi_range(6, 10)
+	spawnTimer.wait_time = rng.randi_range(3, 8)
 	spawnTimer.start()

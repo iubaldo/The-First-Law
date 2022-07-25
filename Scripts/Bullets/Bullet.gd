@@ -49,6 +49,8 @@ func launch(vec: Vector2, pos: Vector2, rot: float, clr: int):
 	rotation = rot
 	color = clr
 
+	Globals.player.shootSound.play()
+
 	onLaunch(vec, pos, rot, clr)
 
 

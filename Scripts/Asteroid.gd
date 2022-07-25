@@ -2,6 +2,8 @@ extends Area2D
 class_name Asteroid
 # defines asteroid behavior
 
+onready var invulTimer = $Timer
+
 signal updateScore(amount)
 
 var invincible = false
@@ -15,6 +17,9 @@ var rotVelocity = 0
 func _ready():
 	add_to_group("asteroid")
 	connect("updateScore", Globals.mainScene, "scoreUpdated")
+	
+	if invincible: 
+		invulTimer.start()
 
 
 func initialize():
@@ -65,7 +70,6 @@ func destroy():
 		return
 	
 	emit_signal("updateScore", 100)
-	print("updating score")
 	
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
@@ -100,19 +104,7 @@ func destroy():
 	child2.velocity = rotateVector(velocity, rng.randi_range(-45, 45))
 	child2.rotVelocity = rng.randf_range(-2, 2)
 	
-	var t1 = Timer.new()
-	t1.wait_time = 0.5
-	t1.autostart = true
-	add_child(t1)
-	t1.connect("timeout", child1, "_on_timer_timeout")
-	t1.start()
 	child1.invincible = true
-	var t2 = Timer.new()
-	t2.wait_time = 0.5
-	t2.autostart = true
-	add_child(t2)
-	t2.connect("timeout", child2, "_on_timer_timeout")
-	t2.start()
 	child2.invincible = true
 
 	queue_free()
@@ -122,5 +114,5 @@ func rotateVector(vec : Vector2, delta : float):
 	return Vector2(vec.x * cos(delta) - vec.y * sin(delta), vec.x * sin(delta) + vec.y * cos(delta))
 
 
-func _on_timer_timeout():
+func _on_Timer_timeout():
 	invincible = false

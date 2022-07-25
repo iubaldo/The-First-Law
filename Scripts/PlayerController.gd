@@ -5,6 +5,7 @@ class_name Player
 # preloads
 onready var playerSprite = $"Player Sprite"
 onready var animationPlayer = $AnimationPlayer
+onready var shootSound = $ShootSound
 onready var flightTrail1 = $"Flight Trail 1"
 onready var flightTrail2 = $"Flight Trail 2"
 onready var explosion = $MissileExplosion
@@ -23,7 +24,7 @@ const ROTATION_SPEED = 5
 
 # shooting variables
 var shootVector: Vector2 = Vector2.UP
-var bulletColor: int = Globals.colors.white
+var bulletColor: int = Globals.colors.red
 
 var whiteCD = 0.5
 var redCD = 0.3
@@ -75,6 +76,7 @@ func _input(_event):
 		
 		bullet.applyColor(bulletColor)
 		bullet.launch(shootVector, $"Bullet Spawn".global_position, self.rotation, bulletColor)
+		# $ShootSound.play()
 		$ShootCD.start()
 	
 	if Input.is_action_just_pressed("bullet0"):
@@ -101,14 +103,14 @@ func _input(_event):
 
 
 func _physics_process(delta):
-	var moveVector = handleMoveInput()
-	applyMovement(moveVector, delta)
-		
 	if !dashing:
 		if Input.is_action_pressed("ui_right"):
 			rotation += ROTATION_SPEED * delta
 		elif Input.is_action_pressed("ui_left"):
 			rotation -= ROTATION_SPEED * delta
+	
+	var moveVector = handleMoveInput()
+	applyMovement(moveVector, delta)
 		
 	shootVector = Vector2(sin(rotation), -cos(rotation))
 	
@@ -118,11 +120,9 @@ func _physics_process(delta):
 		flightTrail1.lifetime = 0.5 * (speedSquared / pow(MAX_SPEED, 2))
 		flightTrail2.emitting = true
 		flightTrail2.lifetime = 0.5 * (speedSquared / pow(MAX_SPEED, 2))
-		# play flight SFX
 	else:
 		flightTrail1.emitting = false
 		flightTrail2.emitting = false
-		# stop playing flight SFX
 
 
 func handleMoveInput() -> Vector2:
@@ -162,7 +162,6 @@ func endDash():
 	dashing = false
 	$Tween.interpolate_property(self, "velocity", null, Vector2.ZERO, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$Tween.start()
-	print("dash ended")
 
 
 func onDeathAnimFinish():
